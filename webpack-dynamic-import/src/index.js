@@ -1,5 +1,6 @@
 async function getFruitFn(fruit) {
   const {default: fruitFn} = await import(`./${fruit}`);
+  console.log("fruit is",fruit)
   return fruitFn;
 }
 
@@ -26,6 +27,15 @@ function component() {
     element.appendChild(guavaBtn);
 
   
+    const div = document.createElement('div')
+    div.innerHTML = "testing"
+    element.appendChild(div)
+
+
+    const tomato = document.createElement('button');
+    tomato.innerHTML = 'tomato'
+    tomato.onclick = async () => {var fruitFn = await getFruitFn('tomato'); console.log('calling fruit fn'); fruitFn()};
+    element.appendChild(tomato);
 
   
     return element;
